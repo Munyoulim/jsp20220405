@@ -10,7 +10,7 @@
 <body>
 <h1>form 요소</h1>
 
-<form action="http://localhost:8080/jsp20220405/chap03/06form/ex02.jsp">
+<form action="http://localhost:8080/jsp99/chap03/06form/ex02.jsp">
 
 	<input type="text" name="age" value="999"/>
 	

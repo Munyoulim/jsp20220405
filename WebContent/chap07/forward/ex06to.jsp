@@ -11,30 +11,30 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%-- http://localhost:8080/jsp20220405/chap07/forward/ex06from.jsp --%>
+<%
+String attr1 = (String) request.getAttribute("job");
+List<String> attr2 = (List<String>) request.getAttribute("names");
+%>
 
-<p>ex11.jsp</p>
-<%-- 데이터 전달시 request 파라미터 사용 --%>
+<p><%= attr1 %></p> <%-- null이 아닌 값 출력 --%>
 
-<%-- 쿼리스트링으로 전달 하는 방법(비추천) --%>
-<jsp:include page="ex12.jsp?name=hello world+한글&age=30"></jsp:include>
+<ul>
+<%
+for (String name : attr2) {
+%>
+	<li><%= name %></li> <%-- 3개의 list item 출력 --%>
+<%
+}
+%>
 
-<%-- jsp param 표준액션태그 사용 방법(추천) --%>
-<jsp:include page="ex12.jsp">
-	<jsp:param name="name" value="hello world+한글" />
-	<jsp:param value="90" name="age"/>
-</jsp:include>
+</ul>
+
+
 
 
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 
 
