@@ -12,29 +12,13 @@
 </head>
 <body>
 
-<p>ex11.jsp</p>
-<%-- 데이터 전달시 request 파라미터 사용 --%>
+<h1>ex09.jsp</h1>
 
-<%-- 쿼리스트링으로 전달 하는 방법(비추천) --%>
-<jsp:include page="include/ex12.jsp?name=hello world+한글&age=30"></jsp:include>
+<p><%= request.getParameter("actor") %></p>
 
-<%-- jsp param 표준액션태그 사용 방법(추천) --%>
-<jsp:include page="ex12.jsp">
-	<jsp:param name="name" value="hello world+한글" />
-	<jsp:param value="90" name="age"/>
-</jsp:include>
+
+<jsp:include page="ex10.jsp"></jsp:include>
 
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

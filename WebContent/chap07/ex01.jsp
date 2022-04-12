@@ -12,9 +12,9 @@
 </head>
 <body>
 
-<%-- 첫번째 방법 : include directive --%>
+<%-- include directive --%>
 <%-- file 속성으로 이 위치에 포함될 파일의 경로를 작성 --%>
-<%-- 다른 파일의 내용을 현재 위치에 삽입(복붙) 후 java로 변환 --%>
+<%-- 다른 파일의 내용을 현재 위치에 삽입(복붙)후 java로 변환 --%>
 <%@ include file="module/header01.jsp" %>
 
 <!-- div>(h1>lorem1^p>lorem)*3 -->

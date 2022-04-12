@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
+<%@ page import="java.util.*"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
@@ -10,12 +10,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- include standard action tag (표준액션태그) --%>
-<%-- page 속성에 포함될 페이지 경로 작성 --%>
-<jsp:include page="module/header02.jsp"></jsp:include>
-<div>
-	<h1>Lorem.</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta quae reiciendis non ducimus corrupti rerum esse cupiditate recusandae possimus. Ut ducimus quis at ipsum. Fugit voluptate modi corrupti inventore sit!</p>
-</div>
+	<h1>cookie 유효시간 설정</h1>
+	
+	<%
+	Cookie cookie = new Cookie("my-cookie1", "my-value1");
+	cookie.setMaxAge(60 * 60);
+	
+	response.addCookie(cookie);
+	
+	%>
 </body>
 </html>
