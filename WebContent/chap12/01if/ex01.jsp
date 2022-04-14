@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
@@ -11,15 +12,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h1>문자열끼리 비교</h1>
+	<%-- test가(조건 값이) true이면 h1내용이 출력됨 --%>
+	<c:if test="${3 > 1 }">
+		<h1>html contents.......</h1>
+	</c:if>
 	
-	<h2>${2 < 11 }</h2>
-	<h2>${"2" < "11" }</h2>
-	
-	<%-- self.. --%>
-	<h2>${"2" + 11 }</h2>
-	<h2>${2 + "11" }</h2>
+	<%
+	if (3 > 0) {
+	%>
+		<h1>html contents... with java</h1>
+		
+	<%
+	}
+	%>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
@@ -11,15 +12,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h1>문자열끼리 비교</h1>
 	
-	<h2>${2 < 11 }</h2>
-	<h2>${"2" < "11" }</h2>
+	<c:if test="${param.age >= 20 }" var="canWatch">
+		<h1>관람가능</h1>
+	</c:if>
 	
-	<%-- self.. --%>
-	<h2>${"2" + 11 }</h2>
-	<h2>${2 + "11" }</h2>
-
+	<c:if test="${not canWatch }">
+		<h1>관람불가능</h1>
+	</c:if>
+	
 </body>
 </html>

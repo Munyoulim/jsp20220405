@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
@@ -12,14 +13,17 @@
 </head>
 <body>
 
-	<h1>문자열끼리 비교</h1>
+	<c:if test="true">
+		무조건 수행 <br />
+	</c:if>
 	
-	<h2>${2 < 11 }</h2>
-	<h2>${"2" < "11" }</h2>
+	<c:if test="${param.name == 'bk' }">
+		name 파라미터 값이 ${param.name } 입니다. <br />
+	</c:if>
 	
-	<%-- self.. --%>
-	<h2>${"2" + 11 }</h2>
-	<h2>${2 + "11" }</h2>
+	<c:if test="${18 < param.age }">
+		당신의 나이는 18세 이상입니다.
+	</c:if>
 
 </body>
 </html>

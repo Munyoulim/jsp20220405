@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
@@ -12,14 +13,15 @@
 </head>
 <body>
 
-	<h1>문자열끼리 비교</h1>
+	<form action="ex04.jsp">
+		나이 : <input type="number" name="age" id="" /> <br />
+		<input type="submit" value="공포영화 관람 가능?"/>
+	</form>
 	
-	<h2>${2 < 11 }</h2>
-	<h2>${"2" < "11" }</h2>
-	
-	<%-- self.. --%>
-	<h2>${"2" + 11 }</h2>
-	<h2>${2 + "11" }</h2>
+	<%-- age 요청파라미터 값이 20보다 크거나 같을 때
+	"관람가능" 출력
+	아니면 "관람불가능" 출력 하는
+	ex04.jsp 작성 (jstl, el 사용) --%>
 
 </body>
 </html>
