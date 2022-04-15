@@ -14,71 +14,35 @@
 <body>
 
 	<%
-	Map<String, String> map = new HashMap<>();
-	map.put("movie", "thor");
-	map.put("computer", "intel");
-	map.put("book", "sql");
-	map.put("lunch", "pizza");
+	String[] names = {"captain", "ironman", "spiderman", "superman", "bat", "widow", "thor"};
 	
-	pageContext.setAttribute("table", map);
+	pageContext.setAttribute("names", names);
 	%>
-	
-	<%-- foreach 사용해서 아래와 같은 테이블 완성
-	단, 순서는 같지 않아도 됨 --%>
-	
-	<table class="table">
-	<thead>
-			<tr>
-				<th>키</th>
-				<th>값</th>
-			</tr>
-		</thead>
-		
-		<tbody>
-			<c:forEach items="${table }" var="item">
-				<tr>
-					<td>
-						${item.key }
-					</td>
-					<td>
-						${item.value }
-					</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	
-	<hr />
 	
 	<table class="table">
 		<thead>
 			<tr>
-				<th>키</th>
-				<th>값</th>
+				<th>#</th>
+				<th>이름</th>
 			</tr>
 		</thead>
+		
 		<tbody>
-			<tr>
-				<td>movie</td>
-				<td>thor</td>
-			</tr>
-			<tr>
-				<td>computer</td>
-				<td>intel</td>
-			</tr>
-			<tr>
-				<td>book</td>
-				<td>sql</td>
-			</tr>
-			<tr>
-				<td>lunch</td>
-				<td>pizza</td>
-			</tr>
+			<c:forEach items="${names }" var="name" begin="3" end="6" varStatus="status">
+				<tr>
+					<td>${status.count }</td>
+					<td>${name }</td>
+				</tr>
+			</c:forEach>
 		</tbody>
+		
 	</table>
 
 </body>
 </html>
+
+
+
 
 
 

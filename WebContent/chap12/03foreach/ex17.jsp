@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*"%>
+<%@ page import="chap11.*" %>
 <% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
@@ -14,72 +15,50 @@
 <body>
 
 	<%
-	Map<String, String> map = new HashMap<>();
-	map.put("movie", "thor");
-	map.put("computer", "intel");
-	map.put("book", "sql");
-	map.put("lunch", "pizza");
+	List<Car> list = new ArrayList<>();
+	list.add(new Car("volvo", 3000));
+	list.add(new Car("kia", 2000));
+	list.add(new Car("tesla", 1000));
+	list.add(new Car("benz", 500));
+	list.add(new Car("hyundai", 2500));
 	
-	pageContext.setAttribute("table", map);
+	pageContext.setAttribute("cars", list);
 	%>
 	
-	<%-- foreach 사용해서 아래와 같은 테이블 완성
-	단, 순서는 같지 않아도 됨 --%>
+	<c:forEach items="${cars }" var="car">
+		<li>model : ${car.model }, price : ${car.price }</li>
+	</c:forEach>
 	
-	<table class="table">
+	<hr />
+	
+	<table class="table table-bordered">
 	<thead>
 			<tr>
-				<th>키</th>
-				<th>값</th>
+				<th>#</th>
+				<th>model</th>
+				<th>price</th>
 			</tr>
 		</thead>
 		
 		<tbody>
-			<c:forEach items="${table }" var="item">
+			<c:forEach items="${cars }" var="car" varStatus="status">
 				<tr>
 					<td>
-						${item.key }
+						${status.count }
 					</td>
 					<td>
-						${item.value }
+						${car.model }
+					</td>
+					<td>
+						${car.price }
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	
-	<hr />
-	
-	<table class="table">
-		<thead>
-			<tr>
-				<th>키</th>
-				<th>값</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>movie</td>
-				<td>thor</td>
-			</tr>
-			<tr>
-				<td>computer</td>
-				<td>intel</td>
-			</tr>
-			<tr>
-				<td>book</td>
-				<td>sql</td>
-			</tr>
-			<tr>
-				<td>lunch</td>
-				<td>pizza</td>
-			</tr>
-		</tbody>
-	</table>
 
 </body>
 </html>
-
 
 
 
