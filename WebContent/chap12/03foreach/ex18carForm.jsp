@@ -59,6 +59,12 @@
 			<tbody>
 				<c:forEach items="${applicationScope.cars }" var="car" varStatus="status">
 					<tr>
+						<td>
+							<form action="ex20carDelete.jsp" >
+								<input type="hidden" value="${status.index }" name="id"/>
+								<input type="submit" value="x" />
+							</form>
+						</td>
 						<td>${status.count }</td>
 						<td>${car.model }</td>
 						<td>${car.price }</td>
