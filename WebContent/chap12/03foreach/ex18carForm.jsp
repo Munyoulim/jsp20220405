@@ -48,42 +48,42 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
+					<th></th>
 					<th>#</th>
 					<th>모델</th>
 					<th>가격</th>
 					<th>가능여부</th>
 					<th>소유자들</th>
-					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${applicationScope.cars }" var="car" varStatus="status">
-					<tr>
-						<td>
-							<form action="ex20carDelete.jsp" >
-								<input type="hidden" value="${status.index }" name="id"/>
-								<input type="submit" value="x" />
-							</form>
-						</td>
-						<td>${status.count }</td>
-						<td>${car.model }</td>
-						<td>${car.price }</td>
-						<td>${car.available }</td>
-						<td>
-							<c:forEach items="${car.owners }" var="owner" varStatus="status"> 
-								${owner }
-								<c:if test="${not status.last }">
-									,
-								</c:if>
-							</c:forEach>
-						</td>
-						
-					</tr>
+				
+					<c:url value="ex20carDelete.jsp" var="deleteUrl">
+						<c:param name="id" value="${status.index }"></c:param>
+					</c:url>
+				
+				<tr>
+					<td><a href="${deleteUrl }"><i class="fa-solid fa-trash-can"></i></a></td>
+					<td>${status.count }</td>
+					<td><c:out value ="${car.model }"/></td>
+					<td>${car.price }만원</td>
+					<td>${car.available }</td>
+					
+					<td>
+						<c:forEach items="${car.owners }" var="owner" varStatus="status1">
+						${owner }
+						<c:if test="${not status1.last }">
+						,
+						</c:if>
+						</c:forEach>
+					</td>
+				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</c:if>
-
+	
 </body>
 </html>
 

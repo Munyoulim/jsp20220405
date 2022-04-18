@@ -9,11 +9,10 @@
 
 int id = Integer.parseInt(request.getParameter("id"));
 
-Car car = new Car();
+List<Car> list = (List<Car>)application.getAttribute("cars");
 
-List<Car> cars=(List<Car>)application.getAttribute("cars");
-
-cars.remove(id);
+list.remove(id);
 
 response.sendRedirect("ex18carForm.jsp");
+
 %>
