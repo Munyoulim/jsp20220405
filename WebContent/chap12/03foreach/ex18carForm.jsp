@@ -23,7 +23,7 @@
 </head>
 <body>
 
-	<h1>차 등록 폼</h1>
+	<h1>차 등록 폼3</h1>
 	<form action="ex19carProcess.jsp" method="post">
 		모델명 : <input type="text" name="model" /> <br />
 		가격 : <input type="number" name="price" id="" /> <br />
