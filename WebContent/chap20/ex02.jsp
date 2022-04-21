@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.*" %>
-<% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,41 +11,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<c:if test="${not empty sessionScope.loggedInUser }" var="login">
-		<%-- 로그인 한 경우 --%>
-		<a href="${pageContext.request.contextPath }/s5/servlet03?logout=true">로그아웃</a>
-		<br />
-		<a href="${pageContext.request.contextPath }/s5/memberOnly">멤버 전용 콘텐츠 보기</a>
-	</c:if>
-
-	<c:if test="${not login }">
-		<%-- 로그인 안한 경우 --%>
-		<h1>로그인 폼</h1>
-		<form action="${pageContext.request.contextPath }/s5/servlet03" method="post">
-			아이디 : <input type="text" name="id" /> <br />
-			암호 : <input type="password" name="pw" /> <br />
-			<input type="submit" value="로그인" />
-		</form>
-	</c:if>
+	<a href="${pageContext.request.contextPath }/chap20/ex01.jsp">ex01로 이동</a>
 	
-	<hr />
+	<br />
 	
-
+	<a href="${appRoot }/chap20/ex01.jsp">ex01로 이동</a>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
