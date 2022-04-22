@@ -16,7 +16,7 @@
 			<div class="col">
 			<h1>직원 명단</h1>
 
-	<table class="table">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>성</th>
