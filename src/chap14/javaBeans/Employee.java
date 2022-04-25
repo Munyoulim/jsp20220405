@@ -5,7 +5,28 @@ public class Employee {
 	private String firstName;
 	private String lastName;
 	private String birthDate;
+	private String photo;
+	private String notes;
+	private int id;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public String getNotes() {
+		return notes;
+	}
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
