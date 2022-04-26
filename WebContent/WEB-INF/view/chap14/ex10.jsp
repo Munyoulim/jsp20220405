@@ -12,6 +12,18 @@
 </head>
 <body>
 
+	<div>
+		<c:if test="${not empty param.success }">
+			<c:if test="${param.success }">
+				<p class="text-success">입력 성공</p>
+			</c:if>
+			
+			<c:if test="${not param.success }">
+			<p class="text-danger">입력 실패</p>
+			</c:if>
+		</c:if>
+	</div>
+
 	<c:if test="${empty employee }">
 		<form action="">
 			직원번호 <input type="number" name="id" value="1" /> 
