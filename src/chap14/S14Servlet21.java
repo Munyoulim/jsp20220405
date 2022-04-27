@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,20 +15,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import chap14.javaBeans.Customer;
+import chap14.javaBeans.Employee;
 
 
 /**
- * Servlet implementation class S14Servlet20
+ * Servlet implementation class S14Servlet21
  */
-@WebServlet("/S14Servlet20")
-public class S14Servlet20 extends HttpServlet {
+@WebServlet("/S14Servlet21")
+public class S14Servlet21 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public S14Servlet20() {
+    public S14Servlet21() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,7 +37,6 @@ public class S14Servlet20 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		String keyword = request.getParameter("keyword");
 		
 		if (keyword == null) {
@@ -48,29 +46,31 @@ public class S14Servlet20 extends HttpServlet {
 		keyword = keyword.trim();
 		keyword = "%" + keyword + "%";
 		
-		String sql = "SELECT CustomerID, CustomerName, City, Country, PostalCode "
-				+ "FROM Customers "
-				+ "WHERE CustomerName LIKE ? "
-				+ "ORDER BY CustomerID ";
+		String sql = "SELECT EmployeeID, FirstName, LastName, BirthDate, Photo, Notes "
+				+ "FROM Employees "
+				+ "WHERE LastName LIKE ? OR FirstName LIKE ? "
+				+ "ORDER BY EmployeeID ";
 		
 		ServletContext application = getServletContext();
 		DataSource ds = (DataSource) application.getAttribute("dbpool");
-		List<Customer> list = new ArrayList<>();
+		List<Employee> list = new ArrayList<>();
 		
 		try (Connection con = ds.getConnection(); 
 				PreparedStatement stmt = con.prepareStatement(sql);
 				) {
 			
 			stmt.setString(1, keyword);
+			stmt.setString(2, keyword);
 			
 			try (ResultSet rs = stmt.executeQuery(); ) {
 				while (rs.next()) {
-					Customer c = new Customer();
+					Employee c = new Employee();
 					c.setId(rs.getInt(1));
-					c.setName(rs.getString(2));
-					c.setCity(rs.getString(3));
-					c.setCountry(rs.getString(4));
-					c.setPostCode(rs.getString(5));
+					c.setFirstName(rs.getString(2));
+					c.setLastName(rs.getString(3));
+					c.setBirthDate(rs.getString(4));
+					c.setPhoto(rs.getString(5));
+					c.setNotes(rs.getString(6));
 					
 					list.add(c);
 				}
@@ -78,9 +78,9 @@ public class S14Servlet20 extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("customerList", list);
+		request.setAttribute("employeeList", list);
 		
-		String path = "/WEB-INF/view/chap14/ex14.jsp";
+		String path = "/WEB-INF/view/chap14/ex15.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
@@ -93,38 +93,3 @@ public class S14Servlet20 extends HttpServlet {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
