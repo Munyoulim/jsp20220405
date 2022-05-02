@@ -11,40 +11,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import app01.dao.BoardDao;
-import app01.dto.BoardDto;
+import app01.dao.ReplyDao;
 
 /**
- * Servlet implementation class BoardInsertServlet
+ * Servlet implementation class ReplyRemoveServlet
  */
-@WebServlet("/board/insert")
-public class BoardInsertServlet extends HttpServlet {
+@WebServlet("/reply/delete")
+public class ReplyRemoveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DataSource ds;
-       
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardInsertServlet() {
+    public ReplyRemoveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
     
-    // init : 최초 한번 실행 보장
     @Override
-    public void init() throws ServletException {
-    	ServletContext application = getServletContext();
-    	this.ds = (DataSource) application.getAttribute("dbpool");
-    }
+	public void init() throws ServletException {
+		ServletContext application = getServletContext();
+		this.ds = (DataSource) application.getAttribute("dbpool");
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String path = "/WEB-INF/view/app01/insert.jsp";
-		request.getRequestDispatcher(path).forward(request, response);
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -52,41 +48,33 @@ public class BoardInsertServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// request 파라미터 가공
-		String title = request.getParameter("title");
-		String body = request.getParameter("body");
-		BoardDto dto = new BoardDto();
-		dto.setTitle(title);
-		dto.setBody(body);
+		// request 파라미터 수집 / 가공
+		String idStr = request.getParameter("id");
+		int id = Integer.parseInt(idStr);
 		
-		// db에 입력
-		// DAO (Data Access Object)
-		try (Connection con = ds.getConnection();) {
-			BoardDao dao = new BoardDao();
-			boolean success = dao.insert(con, dto);
+		String boardId = request.getParameter("boardId");
+		
+		// business logic 처리
+		
+		// 결과 세팅...(필요없음)
+		// sql :
+		// DELETE FROM Reply WHERE id = ?
+		ReplyDao dao = new ReplyDao();
+		
+		boolean success = false;
+		try (Connection con = ds.getConnection()) {
+			success = dao.delete(con, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		// forward/redirect
-		String path = request.getContextPath() + "/board/get?id=" + dto.getId();
-		response.sendRedirect(path);
 		
+		// forward / redirect
+		String loc = request.getContextPath() + "/board/get?id=" + boardId;
+		response.sendRedirect(loc);
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
