@@ -3,6 +3,7 @@ package app01.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class ReplyDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return false;
 	}
 
@@ -54,20 +56,21 @@ public class ReplyDao {
 					
 					list.add(r);
 				}
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return list;
 	}
-	
+
 	public boolean update(Connection con, ReplyDto dto) {
 		String sql = "UPDATE Reply "
 				+ "SET content = ? "
 				+ "WHERE id = ? ";
 		
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			
 			pstmt.setString(1, dto.getContent());
 			pstmt.setInt(2, dto.getId());
 			
@@ -77,39 +80,40 @@ public class ReplyDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 		return false;
 	}
 
 	public boolean delete(Connection con, int id) {
-		String sql = "DELETE FROM Reply WHERE id =?";
+		String sql = "DELETE FROM Reply WHERE id = ?";
 		
 		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, id);
 			
 			int cnt = pstmt.executeUpdate();
 			return cnt == 1;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return false;
 	}
+
+	public void deleteByBoardId(Connection con, int id) throws SQLException {
+		String sql = "DELETE FROM Reply "
+				+ "WHERE board_id = ? ";
+		
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, id);
+		
+		pstmt.executeUpdate();
+		
+		pstmt.close();
+		
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
